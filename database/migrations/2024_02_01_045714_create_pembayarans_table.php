@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('petugas_id')->constrained('petugass');
+            $table->foreignId('petugas_id')->references('id')->on('petugass');
             $table->string('nisn',10);
+            $table->foreign('nisn')->references('nisn')->on('siswas');
             $table->date('tgl_bayar');
             $table->string('bulan_dibayar',8);
             $table->string('tahun_dibayar',4);
-            $table->foreignId('spp_id')->constrained('spps');
+            $table->foreignId('spp_id')->references('spp_id')->on('siswas');
             $table->integer('jumlah_bayar');
             $table->timestamps();
         });
